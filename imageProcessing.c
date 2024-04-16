@@ -1,8 +1,8 @@
+#include <stdint.h>
 #include "imageProcessing.h"
-
+#include "filters.h"
 int GetData(FILE *img, unsigned char buffer[], size_t _size)
 {
-  int ch;
   if (fread(buffer, 1, _size, img) != _size)
   {
     printf("error at: GetData()\n");
@@ -24,4 +24,49 @@ void Quantization(unsigned char data[], size_t dataSize, unsigned int Counting[]
 {
   for(int i = 0; i < dataSize; ++i)
     Counting[data[i]]++;
+}
+
+void GaussianFilter(unsigned char** data, int32_t height)
+{
+
+}
+
+void AverageFilter()
+{
+
+}
+
+void PrewittFilter()
+{
+
+}
+
+void SobelFilter()
+{
+
+}
+
+void RobertFilter()
+{
+
+}
+
+void LaplacianFilter()
+{
+
+}
+
+void HighPassFilter()
+{
+
+}
+
+void LowPassFilter()
+{
+
+}
+
+void SharpeningFilter()
+{
+
 }

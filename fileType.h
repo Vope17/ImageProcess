@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 #ifndef FILETYPE_H_
 #define FILETYPE_H_
 #endif
@@ -6,26 +7,26 @@ typedef struct __attribute__ ((packed))
 {
   struct __attribute__ ((packed))
   {
-    unsigned short bfType;/* Magic number for file */ 
-    unsigned int bfSize;/* Size of file */
-    unsigned short bfReserved1;/* Reserved */
-    unsigned short bfReserved2;
-    unsigned int bfOffBits; /* Offset to bitmap data */
+    uint16_t bfType;/* Magic number for file 2 bytes*/ 
+    uint32_t bfSize;/* Size of file 4 bytes*/
+    uint16_t bfReserved1;/* Reserved 2 bytes*/
+    uint16_t bfReserved2; /* 2 bytes*/
+    uint32_t bfOffBits; /* Offset to bitmap data 4 bytes*/
   } FILE_HEADER;
 
   struct __attribute__ ((packed)) /**** BMP file info structure ****/
   {
-    unsigned int biSize;         /* Size of info header */
-    int biWidth;                  /* Width of image */
-    int biHeight;                 /* Height of image */
-    unsigned short biPlanes;     /* Number of color planes */
-    unsigned short biBitCount;   /* Number of bits per pixel */
-    unsigned int biCompression;  /* Type of compression to use */
-    unsigned int biSizeImage;    /* Size of image data */
-    int biXPelsPerMeter;          /* X pixels per meter */
-    int biYPelsPerMeter;          /* Y pixels per meter */
-    unsigned int biClrUsed;      /* Number of colors used */
-    unsigned int biClrImportant; /* Number of important colors */
+    uint32_t biSize;         /* Size of info header 4 bytes*/
+    int32_t biWidth;                  /* Width of image 4 bytes*/
+    int32_t biHeight;                 /* Height of image 4 bytes*/
+    uint16_t biPlanes;     /* Number of color planes 2 bytes*/
+    uint16_t biBitCount;   /* Number of bits per pixel 2 bytes*/
+    uint32_t biCompression;  /* Type of compression to use 4 bytes*/
+    int32_t biSizeImage;    /* Size of image data 4 bytes*/
+    int32_t biXPelsPerMeter;          /* X pixels per meter 4 bytes*/
+    int32_t biYPelsPerMeter;          /* Y pixels per meter 4 bytes*/
+    uint32_t biClrUsed;      /* Number of colors used 4 bytes*/
+    uint32_t biClrImportant; /* Number of important colors 4 bytes*/
   } INFO_HEADER;
 
   struct __attribute__ ((packed))/**** Colormap entry structure ****/

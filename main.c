@@ -5,6 +5,19 @@
 #include "imageProcessing.h"
 
 #define TYPE _BMP
+typedef struct image 
+{
+  unsigned char *fileHeader;
+  unsigned char *infoHeader;
+  unsigned char *colorMap;
+  uint16_t fileHeaderSize;
+  uint16_t fileInfoSize;
+  uint16_t fileColorMapSize;
+  int32_t height;
+  int32_t width;
+  unsigned char **data;
+}image;
+
 
 int main()
 {
@@ -18,41 +31,41 @@ int main()
     return 1;
   }
 
+  image *_image = (image*) malloc(sizeof(image));
   /* 獲得相對應TYPE的headers的pointer*/
-  unsigned char *fileHeader = (unsigned char*)&(TYPE->FILE_HEADER);
-  unsigned char *infoHeader = (unsigned char*)&(TYPE->INFO_HEADER);
-  unsigned char *colorMap = (unsigned char*)&(TYPE->RGB_QUAD);
-  size_t fileHeaderSize = TYPE->fileHeaderSize;
-  size_t fileInfoSize = TYPE->fileInfoSize;
-  size_t fileColorMapSize = TYPE->fileColorMapSize;
+  _image->fileHeader = (unsigned char*)&(TYPE->FILE_HEADER);
+  _image->infoHeader = (unsigned char*)&(TYPE->INFO_HEADER);
+  _image->colorMap = (unsigned char*)&(TYPE->RGB_QUAD);
+
+  _image->fileHeaderSize = TYPE->fileHeaderSize;
+  _image->fileInfoSize = TYPE->fileInfoSize;
+  _image->fileColorMapSize = TYPE->fileColorMapSize;
 
   /* 獲得相對應TYPE的headers的data */
-  if(GetData(img, fileHeader, fileHeaderSize))
+  if(GetData(img, _image->fileHeader, _image->fileHeaderSize))
     return 1;
-  if(GetData(img, infoHeader, fileHeaderSize))
+  if(GetData(img, _image->infoHeader, _image->fileHeaderSize))
     return 1;
-  if(GetData(img, colorMap, fileHeaderSize))
+  if(GetData(img, _image->colorMap, _image->fileHeaderSize))
     return 1;
 
+  _image->height = TYPE->INFO_HEADER.biHeight;
+  _image->width = TYPE->INFO_HEADER.biWidth;
+  _image->data = (unsigned char**)malloc(_image->height * sizeof(unsigned char*));
   /* 動態分配記憶體 */
-  size_t typeHeight = TYPE->INFO_HEADER.biHeight;
-  size_t typeWidth = TYPE->INFO_HEADER.biWidth;
-  unsigned char **data = (unsigned char**)malloc(typeHeight * sizeof(unsigned char*));
-  for(int i = 0; i < typeHeight; ++i)
-    data[i] = (unsigned char*)malloc(typeWidth * sizeof(unsigned char));
+  for(int i = 0; i < _image->height; ++i)
+    _image->data[i] = (unsigned char*)malloc(_image->width * sizeof(unsigned char));
 
+  for(int i = 0; i < _image->height; ++i)
+    GetData(img, _image->data[i], _image->width);  
 
-  for(int i = 0; i < typeHeight; ++i)
-    GetData(img, data[i], typeWidth);  
-  for(int i = 0; i < typeHeight; ++i)
-    printHex(data[i], typeWidth); 
-
-  print("helloword");
+  for(int i = 0; i < _image->height; ++i)
+    printHex(_image->data[i], _image->width); 
 
   /* free memory */
-  for(int i = 0; i < typeHeight; ++i)
-    free(data[i]);
-  free(data);
+  for(int i = 0; i < _image->height; ++i)
+    free(_image->data[i]);
+  free(_image);
   free(_BMP);
   fclose(img);
   return 0;
