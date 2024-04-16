@@ -47,6 +47,7 @@ int main()
   for(int i = 0; i < typeHeight; ++i)
     printHex(data[i], typeWidth); 
 
+  print("helloword");
 
   /* free memory */
   for(int i = 0; i < typeHeight; ++i)
