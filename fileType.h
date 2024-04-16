@@ -6,7 +6,7 @@ typedef struct __attribute__ ((packed))
 {
   struct __attribute__ ((packed))
   {
-    unsigned short bfType;/* Magic number for file */
+    unsigned short bfType;/* Magic number for file */ 
     unsigned int bfSize;/* Size of file */
     unsigned short bfReserved1;/* Reserved */
     unsigned short bfReserved2;

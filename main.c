@@ -11,7 +11,7 @@ int main()
   FILE *img;
   BMP *_BMP = (BMP*)malloc(sizeof(BMP));  
   initBMP(_BMP);
-
+  
   if(!(img = fopen("./assets/Lena256.bmp", "r+b")))
   {
     printf("open fail\n");
@@ -46,6 +46,7 @@ int main()
     GetData(img, data[i], typeWidth);  
   for(int i = 0; i < typeHeight; ++i)
     printHex(data[i], typeWidth); 
+
 
   /* free memory */
   for(int i = 0; i < typeHeight; ++i)
