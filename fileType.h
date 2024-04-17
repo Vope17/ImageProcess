@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include <stdint.h>
 #ifndef FILETYPE_H_
 #define FILETYPE_H_
 #endif
-typedef struct __attribute__ ((packed))
+
+#include <stdio.h>
+#include <stdint.h>
+typedef struct __attribute__ ((packed)) /* 58 bytes */
 {
   struct __attribute__ ((packed))
   {
@@ -31,21 +32,10 @@ typedef struct __attribute__ ((packed))
 
   struct __attribute__ ((packed))/**** Colormap entry structure ****/
   {
-    unsigned char rgbBlue;     /* Blue value */
-    unsigned char rgbGreen;    /* Green value */
-    unsigned char rgbRed;      /* Red value */
-    unsigned char rgbReserved; /* Reserved */
+    unsigned char rgbBlue;     /* Blue value 1 bytes*/
+    unsigned char rgbGreen;    /* Green value 1 bytes*/
+    unsigned char rgbRed;      /* Red value 1 bytes*/
+    unsigned char rgbReserved; /* Reserved 1 bytes*/
   } RGB_QUAD;
 
-  size_t fileHeaderSize;
-  size_t fileInfoSize;
-  size_t fileColorMapSize;
-
 } BMP;
-
-void initBMP(BMP *_BMP)
-{
-  _BMP->fileHeaderSize = sizeof(_BMP->FILE_HEADER);
-  _BMP->fileInfoSize = sizeof(_BMP->INFO_HEADER);
-  _BMP->fileColorMapSize = sizeof(_BMP->RGB_QUAD);
-}

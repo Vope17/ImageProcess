@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "imageProcessing.h"
 #include "filters.h"
-int GetData(FILE *img, unsigned char buffer[], size_t _size)
+int GetData(FILE *img, unsigned char *buffer, uint32_t _size)
 {
   if (fread(buffer, 1, _size, img) != _size)
   {
@@ -12,7 +12,7 @@ int GetData(FILE *img, unsigned char buffer[], size_t _size)
   return 0;
 }
 
-void printHex(unsigned char data[], size_t _size)
+void PrintHex(unsigned char *data, uint32_t _size)
 {
   for (int i = 0; i < _size; ++i)
     printf("%.2x ", data[i]);
@@ -20,53 +20,53 @@ void printHex(unsigned char data[], size_t _size)
   printf("\n");
 }
 
-void Quantization(unsigned char data[], size_t dataSize, unsigned int Counting[])
+void Quantization(unsigned char *data, uint32_t dataSize, uint32_t *Counting)
 {
   for(int i = 0; i < dataSize; ++i)
     Counting[data[i]]++;
 }
 
-void GaussianFilter(unsigned char** data, int32_t height)
+void GaussianFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Gaus\n");
 }
 
-void AverageFilter()
+void AverageFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Ave\n");
 }
 
-void PrewittFilter()
+void PrewittFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Pre\n");
 }
 
-void SobelFilter()
+void SobelFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Sobel\n");
 }
 
-void RobertFilter()
+void RobertFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Rober\n");
 }
 
-void LaplacianFilter()
+void LaplacianFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Lapl\n");
 }
 
-void HighPassFilter()
+void HighPassFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Highpass\n");
 }
 
-void LowPassFilter()
+void LowPassFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Lowpass\n");
 }
 
-void SharpeningFilter()
+void SharpeningFilter(unsigned char** data, uint32_t height, uint32_t width)
 {
-
+  printf("doing Shapren\n");
 }
