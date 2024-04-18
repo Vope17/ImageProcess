@@ -32,8 +32,6 @@ int main()
 
   GetData(img, (unsigned char*) _image->IMAGE_TYPE, sizeof(IMAGE_TYPE)); /* get the specify TYPE's header's data*/
 
-  // PrintHex((unsigned char*) _image->IMAGE_TYPE, sizeof(IMAGE_TYPE));
-
   _image->height = _image->IMAGE_TYPE->INFO_HEADER.biHeight;
   _image->width = _image->IMAGE_TYPE->INFO_HEADER.biWidth;
 
@@ -43,11 +41,7 @@ int main()
     _image->content[i] = (unsigned char*) malloc(_image->width * sizeof(unsigned char));
 
   for (int i = 0; i < _image->height; ++i)
-  {
     GetData(img, _image->content[i], _image->width);  
-  }
-  // for (int i = 0; i < _image->height; ++i)
-  //   PrintHex(_image->data[i], _image->width);
 
   while(1)
   {

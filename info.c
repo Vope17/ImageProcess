@@ -44,30 +44,21 @@ FuncPtr Filters(uint8_t choice)
   {
     case 1:
       return &GaussianFilter;
-      // GaussianFilter(img_data, img_height, img_width);
     case 2:
       return &AverageFilter;
-      // AverageFilter(img_data, img_height, img_width);
     case 3:
       return &PrewittFilter;
-      // PrewittFilter(img_data, img_height, img_width);
     case 4:
       return &SobelFilter;
-      // SobelFilter(img_data, img_height, img_width);
     case 5:
       return &RobertFilter;
-      // RobertFilter(img_data, img_height, img_width);
     case 6:
       return &LaplacianFilter;
-      // LaplacianFilter(img_data, img_height, img_width);
     case 7:
       return &HighPassFilter;
-      // HighPassFilter(img_data, img_height, img_width);
     case 8:
       return &LowPassFilter;
-      // LowPassFilter(img_data, img_height, img_width);
     case 9:
       return &SharpeningFilter;
-      // SharpeningFilter(img_data, img_height, img_width);
   }
 }
