@@ -40,6 +40,11 @@ int main()
   for (int i = 0; i < _image->height; ++i)
     _image->content[i] = (unsigned char*) malloc(_image->width * sizeof(unsigned char));
 
+  // for (int i = 0; i < sizeof(BMP); ++i)
+  // {
+  //   printf("%.2x ", *((unsigned char*)_image->BMP + i));
+  // }
+
   for (int i = 0; i < _image->height; ++i)
     GetData(img, _image->content[i], _image->width);  
 

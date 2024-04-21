@@ -15,7 +15,7 @@ int GetData(FILE *img, unsigned char *buffer, uint32_t _size)
 void PrintHex(unsigned char *data, uint32_t _size)
 {
   for (int i = 0; i < _size; ++i)
-    printf("%.2x ", data[i]);
+    printf("%.2X ", data[i]);
 
   printf("\n");
 }
